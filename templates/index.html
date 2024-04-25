@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>Twitter DB</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" >
+      <!-- <link rel="stylesheet" href="./static/style.css" > -->
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+   </head>
+   <body>
+      <div class="title_div">
+         <h1>Search Twitter Engine</h1>
+      </div>
+      <div class="search_div">
+         <div class="dropdown">
+            <button>Top Metrics</button>
+            <div class="dropdown-options">
+               <a onclick="getTopmetrics('users');">User</a>
+               <a onclick="getTopmetrics('tweets');">Tweets</a>
+            </div>
+         </div>
+         <br>
+         <br>
+         <div class="search_word_div">
+            <div class="search_word">
+               <select name="language" id="search_option">
+                  <option value="user">User</option>
+                  <option value="string"  selected>String</option>
+                  <option value="Hashtag">Hashtag</option>
+               </select>
+               <input type="text" id="search_word" name="search_word" placeholder="Enter Keyword">
+               Start:
+               <input type="date" id="start_date" name="start_date">
+               End: 
+               <input type="date" id="end_date" name="end_date">
+               <button id="search_btn" onclick="btnSearch();">Search</button>
+            </div>
+         </div>
+      </div>
+      <br><br>
+      <div id="fetch_time"></div>
+      <br>
+      <div id="result_len"></div>
+      <br>
+      <div id="content" class="content">
+         <dialog id="dialog-info" style="display: none;">
+            <button autofocus id="close-dialog">Close</button>
+            <div></div>
+         </dialog>
+         <div id="top-metrics-user" style="display: none;">
+            <table display="hidden">
+               <caption>
+                  Top Follwed Users
+               </caption>
+               <thead>
+                  <tr>
+                     <th scope="col">User Name</th>
+                     <th scope="col">Twitter Handle</th>
+					 <th scope="col">Screen Name</th>
+                     <th scope="col">Follower Count</th>
+                     <th scope="col">Friend Count</th>
+                     <th scope="col">Verified User</th>
+                     <th scope="col">Description</th>
+                     <th scope="col">Location</th>
+                  </tr>
+               </thead>
+               <tbody id="table-body">
+               </tbody>
+               <tfoot>
+                  <tr>
+                     <th scope="row" colspan="2">Search Time</th>
+                     <td id="search-time">33</td>
+                  </tr>
+               </tfoot>
+            </table>
+         </div>
+         <div class="cards" id="top-metrics-cards" style="display: none;">
+         </div>
+      </div>
+      <script type="text/javascript" src="{{ url_for('static', filename='script.js') }}"></script>
+      <!-- <script type="text/javascript" src="./static/script.js"></script> -->
+   </body>
+</html>

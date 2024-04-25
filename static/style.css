@@ -1,0 +1,312 @@
+.title_div{
+  display: flex;
+  justify-content: center;
+}
+
+.search_div{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.outer_div1{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  /* align-items: center; */
+}
+
+.search_type_div, .search_date_div{
+  padding: 10px 18px;
+  border: 1px solid;
+  /* box-shadow: 1px 1px 10px; */
+  /* box-sizing: border-box; */
+}
+
+.outer_div2{ 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* border: 1px solid; */
+  padding: 20px 28px;
+}
+
+.search_btn_div{
+  padding-top: 10px;
+}
+
+
+.card{
+  margin: 18px 4px;
+  padding: 8px 20px;
+  border-radius: 4px;
+  box-shadow: 0px 0px 6px rgba(0,0,0,0.2);
+}
+
+.click_div:hover{
+  cursor: pointer;
+  background-color: #666666;
+  color: white;
+  border-radius: 4px;
+  padding: 4px 10px;
+  margin: 4px 0px;
+}
+.card .name{
+  font-size: large;
+  font-weight: bold;   
+}
+.card .screen_name{
+  font-size: small;
+}
+.card .tweet{
+  padding: 8px 0;
+}
+.card .time{
+  font-size: small;
+  /* display: flex; */
+  justify-self: end;
+  float: right;
+}
+.card .bottom_bar{
+  padding: 2px;
+  margin-top: 4px;
+  display: flex;
+  justify-content: space-around;
+  box-shadow: 0px -1px 0px rgba(0,0,0,0.1);
+}
+
+.bu{
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+
+/* Style the tab */
+.tab {
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: #f1f1f1;
+}
+.tab button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+}
+.tab button:hover {
+  background-color: #ddd;
+}
+.tab button.active {
+  background-color: #ccc;
+}
+
+.tabcontent {
+  display: none;
+  padding: 6px 12px;
+  /* border: 1px solid #ccc;
+  border-top: none; */
+}
+dropdown {
+  display: inline-block;
+  position: relative;
+}
+
+button{
+  border:none;
+  border-radius:5px;
+  padding:15px 30px;
+  font-size:18px;
+  cursor:pointer;
+}
+
+button:hover{
+  background-color:#ddd;
+}
+
+.dropdown-options {
+  display: none;
+  position: absolute;
+  overflow: auto;
+  background-color:#fff;
+  border-radius:5px;
+  box-shadow: 0px 10px 10px 0px rgba(0,0,0,0.4);
+}
+
+.dropdown:hover .dropdown-options {
+  display: block;
+}
+
+.dropdown-options a {
+  display: block;
+  color: #000000;
+  padding: 5px;
+  text-decoration: none;
+  padding:20px 40px;
+}
+
+.dropdown-options a:hover {
+  color: #0a0a23;
+  background-color: #ddd;
+  border-radius:5px;
+}
+table {
+  border-collapse: collapse;
+  border: 2px solid rgb(140 140 140);
+  font-family: sans-serif;
+  font-size: 0.8rem;
+  letter-spacing: 1px;
+}
+
+caption {
+  caption-side: bottom;
+  padding: 10px;
+  font-weight: bold;
+}
+
+thead,
+tfoot {
+  background-color: rgb(228 240 245);
+}
+
+th,
+td {
+  border: 1px solid rgb(160 160 160);
+  padding: 8px 10px;
+}
+
+td:last-of-type {
+  text-align: center;
+}
+
+tbody > tr:nth-of-type(even) {
+  background-color: rgb(237 238 242);
+}
+
+tfoot th {
+  text-align: right;
+}
+
+tfoot td {
+  font-weight: bold;
+}
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Adjust the minimum width and column count as needed */
+  grid-gap: 20px;
+}
+
+.card {
+  display: grid;
+  grid-template-rows: max-content 200px 1fr;
+  border: 1px solid #ccc;
+  width: 25%; /* Set a width for each card */
+  margin: 10px; /* Add margin to create space between cards */
+  float: left; /* Float the cards to the left */
+  box-sizing: border-box; /* Include padding and border in the element's total width and height */
+}
+
+.cards::after {
+  content: "";
+  display: table;
+  clear: both; /* Clear floats after the cards */
+}
+
+.card img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+/* Style the input field */
+#search_word {
+  width: 300px; /* Set the width of the search bar */
+  padding: 10px; /* Add padding to the input field */
+  border: 1px solid #ccc; /* Add a border */
+  border-radius: 5px; /* Add rounded corners */
+  font-size: 16px; /* Set the font size */
+  transition: border-color 0.3s ease; /* Add transition effect for border color */
+}
+
+/* Style the input field on focus */
+#search_word:focus {
+  border-color: #007bff; /* Change border color on focus */
+  outline: none; /* Remove default outline */
+}
+
+/* Style the placeholder text */
+#search_word::placeholder {
+  color: #999; /* Set placeholder text color */
+}
+
+/* Style the search button */
+#search_btn {
+  padding: 10px 20px; /* Add padding to the button */
+  background-color: #007bff; /* Set button background color */
+  color: #fff; /* Set button text color */
+  border: none; /* Remove button border */
+  border-radius: 5px; /* Add rounded corners */
+  cursor: pointer; /* Change cursor to pointer on hover */
+  /* transition: background-color 0.3s ease; Add transition effect for background color */
+}
+/* Style the date-time inputs */
+#start_date, #end_date {
+  width: 200px; /* Set the width of the input fields */
+  padding: 10px; /* Add padding to the input fields */
+  margin-bottom: 10px; /* Add space between the input fields */
+  border: 1px solid #ccc; /* Add a border */
+  border-radius: 5px; /* Add rounded corners */
+  font-size: 16px; /* Set the font size */
+  transition: border-color 0.3s ease; /* Add transition effect for border color */
+}
+
+/* Style the date-time inputs on focus */
+#start_date:focus, #end_date:focus {
+  border-color: #007bff; /* Change border color on focus */
+  outline: none; /* Remove default outline */
+}
+.hyperlink {
+  color: blue; /* Set hyperlink color */
+  text-decoration: underline; /* Add underline */
+  cursor: pointer; /* Change cursor to pointer on hover */
+}
+
+.hyperlink:hover {
+  color: darkblue; /* Change color on hover */
+}
+select{
+  border:none;
+  padding: 10px 20px;
+  border-radius:5px;
+}
+
+select:focus{
+  outline:none;
+}
+.input-container {
+  margin-bottom: 20px;
+}
+
+/* Style for the label */
+.input-label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+/* Style for the input */
+.input-field {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 100%;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+/* Style for the input on focus */
+.input-field:focus {
+  outline: none;
+  border-color: #007bff;
+}
