@@ -39,7 +39,7 @@ function getTopmetrics(type){
     });
 }
 
-const fetchsearchresult = (type, word, sDate, eDate) => {
+var fetchsearchresult = (type, word, sDate, eDate) => {
     $.ajax({
         type: "GET",
         url: "http://localhost:5000/"+type +"/"+ word +"/"+ sDate +"/"+ eDate,
@@ -106,7 +106,7 @@ function search_feed(response){
     $("#table-body").empty();
     var type = response.type;
     var res =  type == 'users' ? response.data : response.data.data;
-    fetchTime.innerHTML = "Search Time: " + (response.data.fetch_time * 1000) + " ms";
+    fetchTime.innerHTML = "Search Time: " + (response.data.fetch_time) + " ms";
     if (res == null)  
     {
         resultLen.innerHTML = "No Data found."
@@ -121,11 +121,11 @@ function search_feed(response){
                 header.innerHTML = "Twitter Handle:"
                 var heading = $("<h3>").text(tweet.screen_name);
                 header.append(heading);
-                image = $("<img>").attr("src", "/static/icon.png").attr("alt", "Profile").attr("onclick", "authorclick(" +tweet.id_str+ ")");
+                image = $("<img>").attr("src", "/static/icon.png").attr("alt", "Profile");
                 content = $("<div>").addClass("content");
                 var breaks = $("</br>");
                 if(tweet.id_str != undefined){
-                    var authour = $("<div>").attr("onclick", "authorclick(" +tweet.id_str+ ")").attr("class", "hyperlink").text("User Tweets")
+                    var authour = $("<div>").attr("onclick", "retweetsClick('" + tweet.id_str + "')").attr("class", "hyperlink").text("User Tweets")
                     content.append(authour);
                 }
                 if(tweet.name != undefined){
@@ -146,16 +146,17 @@ function search_feed(response){
                 header.innerHTML = "Tweeted Time:"
                 var heading = $("<h5>").text(tweet.created_at);
                 header.append(heading);
-                var image = $("<img>").attr("src", "/static/icon.png").attr("alt", "Profile").attr("onclick", "authorclick(" +tweet.user_id_str+ ")");
+                var image = $("<img>").attr("src", "/static/icon.png").attr("alt", "Profile").attr("onclick", "authorclick('" +tweet.user_id_str+ "')");
                 var content = $("<div>").addClass("content");
                 var breaks = $("</br>");
                 if(tweet.user_id_str != undefined){
-                    var authour = $("<div>").attr("onclick", "authorclick(" +tweet.user_id_str+ ")").attr("class", "hyperlink").text("Author Profile")
+                    var authour = $("<div>").attr("onclick", "authorclick('" + tweet.user_id_str + "')").attr("class", "hyperlink").text("Author Profile")
                     content.append(authour);
                 }
-                if(tweet.id_str != undefined){
-                    var retweet = $("<div>").attr("onclick", "ReTweetsList(" +tweet.id_str+ ")").attr("class", "hyperlink").text("Retweets")
-                    content.append(retweet);
+                if (tweet.id_str !== undefined) {
+                    // Convert tweet.id_str to string explicitly
+                    var RT = $("<div>").attr("onclick", "retweetsClick('" + tweet.id_str + "')").attr("class", "hyperlink").text("Retweets");
+                    content.append(RT);
                 }
                 if(tweet.favorite_count != undefined){
                     var fav_count = $("<div>").text("Liked: " +tweet.favorite_count)
@@ -195,7 +196,8 @@ function search_feed(response){
           });  
 }
 
-const authorclick = (id) => {
+function authorclick(authour){
+    id=authour;
     $.ajax({
         type: "GET",
         url: "http://localhost:5000/author/"+ id,
@@ -205,10 +207,11 @@ const authorclick = (id) => {
     });
 }
 
-const ReTweetsList = (id) => {
+function retweetsClick(retweetedid){
+    id = retweetedid;
     $.ajax({
         type: "GET",
-        url: "http://localhost:5000/retweet/"+ id,
+        url: "http://localhost:5000/retweet/"+ retweetedid,
         dataType: "json",
         success: ReTweetsListfeed,
         error: function(xrh, status, error) { alert("Error in fetching data.") }
@@ -217,8 +220,8 @@ const ReTweetsList = (id) => {
 
 function authorDialog(response){
     var res = response.data;
-    fetchTime.innerHTML = "Search Time: " + (response.data.fetch_time * 1000) + " ms";
-    resultLen.innerHTML = res.data.length + " tweets found.";
+    fetchTime.innerHTML = "Search Time: " + (response.data.fetch_time) + " ms";
+   // resultLen.innerHTML = res.data.length + " tweets found.";
 
     var dialogContent = '';
     dialogContent += '<div>';
@@ -237,17 +240,16 @@ function authorDialog(response){
 
 function ReTweetsListfeed(response){
     var res = response.data;
-    fetchTime.innerHTML = "Search Time: " + (response.data.fetch_time * 1000) + " ms";
-    resultLen.innerHTML = res.data.length + " tweets found.";
+    fetchTime.innerHTML = "Search Time: " + (response.data.fetch_time) + " ms";
+    //resultLen.innerHTML = res.data.length + " tweets found.";
 
     var dialogContent = '';
     dialogContent += '<div>';
-    dialogContent += '<p>Screen Name: ' + response.data['data'][0].screen_name + '</p>';
-    response.data['data'].forEach(function(item) {
+    dialogContent += '<p>Screen Name: ' + response.data.screen_name + '</p>';
+    response.data.forEach(function(item) {
         dialogContent += '<p>Created At: ' + item.created_at + '</p>';
         dialogContent += '<p>ID: ' + item.id_str + '</p>';
         dialogContent += '<p>Tweet: ' + item.text + '</p>';
-        dialogContent += '<p>Retweet Count: ' + item.retweet_count + '</p>';
     });
     dialogContent += '</div>';
     $('#dialog-info div').html(dialogContent);
