@@ -16,12 +16,6 @@ The Twitter search engine project allows users to search for tweets based on key
 - **User-Defined Functions**: Incorporates custom functions for frontend operations to improve user experience.
 - **Cache Management**: Implements cache management mechanisms for enhancing system performance.
 
-## Contributors
-
-- **Glory**: Worked on dataset preprocessing, formatting, and storing data in non-relational databases. Also built the Flask application development.
-- **Amrutha**: Focused on relational database preprocessing and loading, database indexing, and optimizing search queries.
-- **Ruth**: Contributed to the development of user-defined functions used in the frontend to enhance user interaction.
-- **Suneeth**: Worked on cache management to improve system performance.
 
 ## Usage
 
